@@ -16,9 +16,11 @@ const AddProduct = async (req: Request, res: Response) => {
   }
 };
 
-const getAllProducts = async (req: Request, res: Response) => {
+const GetAllProducts = async (req: Request, res: Response) => {
   try {
-    const result = await ProductServices.getAllProductsFromDB();
+    const { searchTerm } = req.query;
+    const search = typeof searchTerm === "string" ? searchTerm : "";
+    const result = await ProductServices.GetAllProductsFromDB(search);
 
     res.status(200).json({
       success: true,
@@ -30,10 +32,28 @@ const getAllProducts = async (req: Request, res: Response) => {
   }
 };
 
-const getSingleProduct = async (req: Request, res: Response) => {
+const GetSingleProduct = async (req: Request, res: Response) => {
   try {
     const { productId } = req.params;
-    const result = await ProductServices.getSingleProductFromDB(productId);
+    const result = await ProductServices.GetSingleProductFromDB(productId);
+
+    res.status(200).json({
+      success: true,
+      message: "Product fetched successfully!",
+      data: result,
+    });
+  } catch (error: any) {
+    res.status(500).json({
+      success: false,
+      message: error?.message || "Something Went Wrong",
+      error: error,
+    });
+  }
+};
+const DeleteSingleProduct = async (req: Request, res: Response) => {
+  try {
+    const { productId } = req.params;
+    const result = await ProductServices.DeleteSingleProductFromDB(productId);
 
     res.status(200).json({
       success: true,
@@ -51,6 +71,7 @@ const getSingleProduct = async (req: Request, res: Response) => {
 
 export const ProductControllers = {
   AddProduct,
-  getAllProducts,
-  getSingleProduct,
+  GetAllProducts,
+  GetSingleProduct,
+  DeleteSingleProduct,
 };
