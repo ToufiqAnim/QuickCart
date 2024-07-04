@@ -33,7 +33,7 @@ const GetAllProducts = async (req: Request, res: Response) => {
 
     res.status(200).json({
       success: true,
-      message: "Products are retrieved succesfully",
+      message: `Products matching search term '${searchTerm}' fetched successfully!`,
       data: result,
     });
   } catch (error: any) {
@@ -66,12 +66,12 @@ const GetSingleProduct = async (req: Request, res: Response) => {
 const DeleteSingleProduct = async (req: Request, res: Response) => {
   try {
     const { productId } = req.params;
-    const result = await ProductServices.DeleteSingleProductFromDB(productId);
+    await ProductServices.DeleteSingleProductFromDB(productId);
 
     res.status(200).json({
       success: true,
-      message: "Product fetched successfully!",
-      data: result,
+      message: "Product deleted successfully!",
+      data: null,
     });
   } catch (error: any) {
     res.status(500).json({

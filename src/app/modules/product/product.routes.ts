@@ -8,6 +8,7 @@ router.post("/add-product", ProductControllers.AddProduct);
 router.get("/", ProductControllers.GetAllProducts);
 
 router.get("/:productId", ProductControllers.GetSingleProduct);
+router.put("/:productId", ProductControllers.UpdateProduct);
 router.delete("/:productId", ProductControllers.DeleteSingleProduct);
 
 export const ProductRoutes = router;
