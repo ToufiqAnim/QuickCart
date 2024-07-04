@@ -10,7 +10,7 @@ const inventorySchema = z.object({
   inStock: z.boolean(),
 });
 
-const addProductValidationSchema = z.object({
+const AddProductValidationSchema = z.object({
   name: z.string(),
   description: z.string(),
   price: z.number(),
@@ -19,7 +19,16 @@ const addProductValidationSchema = z.object({
   variants: z.array(variantSchema),
   inventory: inventorySchema,
 });
-
+const UpdateProductValidationSchema = z.object({
+  name: z.string().optional(),
+  description: z.string().optional(),
+  price: z.number().optional(),
+  category: z.string().optional(),
+  tags: z.array(z.string()).optional(),
+  variants: z.array(variantSchema).optional(),
+  inventory: inventorySchema.optional(),
+});
 export const ProductValidation = {
-  addProductValidationSchema,
+  AddProductValidationSchema,
+  UpdateProductValidationSchema,
 };
