@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { OrderValidation } from "./order.validation";
 import { OrderService } from "./order.service";
 
+//CREATE ORDERS
 const CreateOrder = async (req: Request, res: Response) => {
   try {
     const orderData = req.body;
@@ -31,6 +32,7 @@ const CreateOrder = async (req: Request, res: Response) => {
   }
 };
 
+//GET ORDERS
 const GetAllOrderFromDB = async (req: Request, res: Response) => {
   try {
     const { email } = req.query;

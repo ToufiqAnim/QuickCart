@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { ProductServices } from "./product.service";
 import { ProductValidation } from "./product.validation";
 
+//ADD PRODUCTS
 const AddProduct = async (req: Request, res: Response) => {
   try {
     const productData = req.body;
@@ -25,6 +26,7 @@ const AddProduct = async (req: Request, res: Response) => {
   }
 };
 
+// GET ALL PRODUCTS
 const GetAllProducts = async (req: Request, res: Response) => {
   try {
     const { searchTerm } = req.query;
@@ -45,6 +47,7 @@ const GetAllProducts = async (req: Request, res: Response) => {
   }
 };
 
+//GET SINGLE PRODUCTS
 const GetSingleProduct = async (req: Request, res: Response) => {
   try {
     const { productId } = req.params;
@@ -63,6 +66,8 @@ const GetSingleProduct = async (req: Request, res: Response) => {
     });
   }
 };
+
+// DELETE SINGLE PRODUCT
 const DeleteSingleProduct = async (req: Request, res: Response) => {
   try {
     const { productId } = req.params;
@@ -81,6 +86,8 @@ const DeleteSingleProduct = async (req: Request, res: Response) => {
     });
   }
 };
+
+//UPDATE PRODUCTS
 const UpdateProduct = async (req: Request, res: Response) => {
   try {
     const { productId } = req.params;

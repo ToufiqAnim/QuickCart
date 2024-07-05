@@ -2,6 +2,7 @@ import { ProductModel } from "../product/product.model";
 import { IOrder } from "./order.intrerface";
 import { OrderModel } from "./order.model";
 
+//CREATE ORDER
 const CreateOrderIntoDB = async (data: IOrder) => {
   const { productId, quantity } = data;
 
@@ -26,6 +27,7 @@ const CreateOrderIntoDB = async (data: IOrder) => {
   return result;
 };
 
+//GET ORDERS
 const GetAllOrdersFromDB = async (email: string) => {
   if (email) {
     return await OrderModel.find({ email: email });
