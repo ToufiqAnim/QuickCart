@@ -16,8 +16,8 @@ const productSchema = new mongoose_1.Schema({
     price: { type: Number, required: true },
     category: { type: String, required: true },
     tags: { type: [String], required: true },
-    variants: { type: [variantSchema], required: true },
-    inventory: { type: inventorySchema, required: true },
+    variants: { type: [variantSchema], required: true, _id: false },
+    inventory: { type: inventorySchema, required: true, _id: false },
 }, {
     toJSON: { virtuals: true },
 });
