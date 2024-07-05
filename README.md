@@ -2,6 +2,8 @@
 
 This is an E-commerce backend application built with Express, TypeScript, Mongoose, and Zod.
 
+**Live Demo**: [Quick Cart](https://quick-cart-puce.vercel.app/)
+
 ## Features
 
 - Add products
