@@ -33,9 +33,13 @@ const GetAllProducts = async (req: Request, res: Response) => {
     const search = typeof searchTerm === "string" ? searchTerm : "";
     const result = await ProductServices.GetAllProductsFromDB(search);
 
+    const message = search
+      ? `Products matching search term '${search}' fetched successfully!`
+      : "Products fetched successfully!";
+
     res.status(200).json({
       success: true,
-      message: `Products matching search term '${searchTerm}' fetched successfully!`,
+      message: message,
       data: result,
     });
   } catch (error: any) {
