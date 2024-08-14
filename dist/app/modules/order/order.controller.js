@@ -46,20 +46,14 @@ const GetAllOrderFromDB = (req, res) => __awaiter(void 0, void 0, void 0, functi
         const { email } = req.query;
         const emailString = typeof email === "string" ? email : "";
         const result = yield order_service_1.OrderService.GetAllOrdersFromDB(emailString);
-        if (email) {
-            res.status(200).json({
-                success: true,
-                message: "Orders fetched successfully for user email!",
-                data: result,
-            });
-        }
-        else {
-            res.status(200).json({
-                success: true,
-                message: "Orders fetched successfully!",
-                data: result,
-            });
-        }
+        const message = email
+            ? "Orders fetched successfully for user email!"
+            : "Orders fetched successfully!";
+        res.status(200).json({
+            success: true,
+            message: message,
+            data: result,
+        });
     }
     catch (error) {
         res.status(500).json({

@@ -38,19 +38,16 @@ const GetAllOrderFromDB = async (req: Request, res: Response) => {
     const { email } = req.query;
     const emailString = typeof email === "string" ? email : "";
     const result = await OrderService.GetAllOrdersFromDB(emailString);
-    if (email) {
-      res.status(200).json({
-        success: true,
-        message: "Orders fetched successfully for user email!",
-        data: result,
-      });
-    } else {
-      res.status(200).json({
-        success: true,
-        message: "Orders fetched successfully!",
-        data: result,
-      });
-    }
+
+    const message = email
+      ? "Orders fetched successfully for user email!"
+      : "Orders fetched successfully!";
+
+    res.status(200).json({
+      success: true,
+      message: message,
+      data: result,
+    });
   } catch (error: any) {
     res.status(500).json({
       success: false,
